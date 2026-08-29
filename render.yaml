@@ -1,0 +1,19 @@
+# Render Blueprint — deploy "Simple" with one click.
+# 1. Import this repo into Render (New -> Blueprint -> from this render.yaml).
+# 2. Set the STRIPE_SECRET_KEY env var (Stripe test key) to enable payments.
+# 3. Render provisions a web service + a persistent disk automatically.
+services:
+  - type: web
+    name: simple-social
+    runtime: docker
+    repo: https://github.com/YOUR_USERNAME/simple-social   # TODO: point at your repo
+    plan: free
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: STRIPE_SECRET_KEY
+        sync: false                     # set this manually in the dashboard
+    disk:
+      name: simple-data
+      mountPath: /app/data              # persistent JSON store
+      sizeGB: 1
