@@ -1,0 +1,20 @@
+# SIMPLE — Fly.io config (owner & creator: Daniel Pollard)
+# Deploy:  fly launch (once) then  fly deploy
+app = "simple-social"
+
+[env]
+  PORT = "3000"
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 1
+  processes = ["app"]
+
+# Persistent volume so the JSON store survives restarts.
+# Run once:  fly volumes create simple_data --size 1
+[mounts]
+  source = "simple_data"
+  destination = "/app/data"
