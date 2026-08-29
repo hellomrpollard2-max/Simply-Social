@@ -1,0 +1,13 @@
+{
+  "name": "simple-social",
+  "version": "1.0.0",
+  "description": "SIMPLE — a social network owned by its creators. Created & owned by Daniel Pollard.",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "test": "node test.js"
+  },
+  "keywords": ["social-network", "creator-economy", "video", "messaging"],
+  "license": "UNLICENSED",
+  "engines": { "node": ">=18" }
+}
