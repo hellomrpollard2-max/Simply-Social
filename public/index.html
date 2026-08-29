@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Simple — The social network owned by its creators</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div id="app"></div>
+
+<!-- Auth screen -->
+<template id="tpl-auth">
+  <div class="auth-wrap">
+    <div class="auth-brand">
+      <div class="logo">S</div>
+      <h1>SIMPLE</h1>
+      <p class="tagline">Built for people, not advertisers.<br/>Owned &amp; created by <strong>Daniel Pollard</strong>.</p>
+    </div>
+    <div class="auth-card">
+      <div class="tabs">
+        <button class="tab active" data-tab="login">Log in</button>
+        <button class="tab" data-tab="register">Sign up</button>
+      </div>
+      <form id="auth-form">
+        <input id="a-name" placeholder="Display name" class="hidden" />
+        <input id="a-handle" placeholder="@handle" class="hidden" />
+        <input id="a-email" type="email" placeholder="Email" required />
+        <input id="a-password" type="password" placeholder="Password" required />
+        <button class="btn primary" type="submit">Continue</button>
+      </form>
+      <p class="demo">Demo: <code>creator@pollard.social / password123</code><br/>or <code>marcus@example.com / password1234</code></p>
+      <p class="err" id="auth-err"></p>
+    </div>
+  </div>
+</template>
+
+<!-- Main app -->
+<template id="tpl-app">
+  <nav class="sidebar">
+    <div class="logo small">S</div>
+    <div class="nav-label">SIMPLE</div>
+    <button class="nav-btn" data-view="feed">🏠 Feed</button>
+    <button class="nav-btn" data-view="video">▶ Video</button>
+    <button class="nav-btn" data-view="groups">👥 Groups</button>
+    <button class="nav-btn" data-view="marketplace">🏁 Marketplace</button>
+    <button class="nav-btn" data-view="jobs">💼 Jobs &amp; Hiring</button>
+    <button class="nav-btn" data-view="wellness">🧠 Mental Health</button>
+    <button class="nav-btn" data-view="messages">✉️ Messages</button>
+    <button class="nav-btn" data-view="live">📡 Live</button>
+    <button class="nav-btn" data-view="notifications">🔔 Notifications <span class="badge hidden" id="notif-badge">0</span></button>
+    <button class="nav-btn" data-view="settings">⚙️ Settings</button>
+    <button class="nav-btn" data-view="creator">📈 Creator Studio</button>
+    <button class="nav-btn admin-only hidden" data-view="admin">🛡️ Admin</button>
+    <div class="nav-spacer"></div>
+    <div class="me">
+      <div class="avatar" id="my-avatar">?</div>
+      <div>
+        <b id="my-name"></b>
+        <div class="handle">@<span id="my-handle"></span></div>
+      </div>
+      <button class="btn ghost small" id="logout">Sign out</button>
+    </div>
+  </nav>
+
+  <main>
+    <header class="topbar">
+      <h2 id="view-title">Feed</h2>
+      <button class="btn primary" id="compose-open">+ New post</button>
+    </header>
+    <div id="view"></div>
+    <footer class="legalbar">
+      <span>© <span id="footer-year"></span> Simple · Owned &amp; created by Daniel Pollard</span>
+      <a href="#" data-legal="terms">Terms of Service</a>
+      <a href="#" data-legal="privacy">Privacy Policy</a>
+      <a href="#" data-legal="safety">Content &amp; Safety</a>
+      <a href="#" data-legal="cookies">Cookies</a>
+    </footer>
+  </main>
+
+  <!-- Compose modal -->
+  <div class="modal hidden" id="compose">
+    <div class="modal-card">
+      <h3>New post</h3>
+      <textarea id="compose-body" placeholder="Share something with your community..."></textarea>
+      <label class="row"><input type="checkbox" id="compose-video" /> Video post (uses sample clip)</label>
+      <label class="row"><input type="checkbox" id="compose-monetized" /> Enable creator monetization</label>
+      <div class="modal-actions">
+        <button class="btn ghost" id="compose-cancel">Cancel</button>
+        <button class="btn primary" id="compose-post">Post</button>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script src="app.js"></script>
+</body>
+</html>
